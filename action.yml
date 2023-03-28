@@ -1,0 +1,41 @@
+name: 'Suppress PR comments from Test Summary marketplace plugin'
+author: 'Eloise Taylor'
+description: 'Set comment mode for test summary based on the teams a user is in'
+
+inputs:
+  github_token:
+    description: 'GitHub API Access Token.'
+    default: ${{ github.token }}
+    required: true
+    
+  github_organisation:
+    description: 'github_organisation'
+    default: ${{ github.repository_owner }} 
+    required: false
+    
+  github_team_for_switching_off_comments:
+    description: 'github_team_for_switching_off_comments'
+    default: 'Suppress PR test summary comments'
+    required: true
+    
+outputs:
+  TEST_SUMMARY_COMMENT_MODE:
+    description: "Comment mode"
+    value: ${{ steps.set-comment-mode.outputs.TEST_SUMMARY_COMMENT_MODE }}
+
+runs:
+  using: "composite"
+  steps:
+  - name: Check if user is a member of the team
+    uses: tspascoal/get-user-teams-membership@v2
+    id: checkUserMember
+    with:
+      username: ${{ github.actor }}
+      organization: ${{ inputs.github_organisation }}
+      team: ${{ inputs.github_team_for_switching_off_comments }}
+      GITHUB_TOKEN: ${{ inputs.github_token }}
+      
+  - name: Set publish test results comment_mode flag to suppress comments on PR if there are failures
+    id: set-comment-mode
+    if: ${{ steps.checkUserMember.outputs.isTeamMember == 'true' }}
+    run:  echo "TEST_SUMMARY_COMMENT_MODE='off'" >> $GITHUB_OUTPUT
