@@ -1,20 +1,25 @@
 name: 'Suppress PR comments from Test Summary marketplace plugin'
 author: 'Eloise Taylor'
-description: 'Set comment mode for test summary based on the teams a user is in'
+description: 'Set comment mode on a PR for the test summary based on the teams a user is in'
 
 inputs:
+  default_comment_mode:
+    description: "The comment mode to use when a commit author isn't in any Github Teams for suppressing comments on the PR"
+    default: 'failures'
+    required: false
+    
   github_token:
     description: 'GitHub API Access Token.'
     default: ${{ github.token }}
     required: true
     
   github_organisation:
-    description: 'github_organisation'
+    description: 'Github Organisation the team is part of'
     default: ${{ github.repository_owner }} 
     required: false
     
   github_team_for_switching_off_comments:
-    description: 'github_team_for_switching_off_comments'
+    description: 'Github Team users can join to suppress comments on their PR'
     default: 'Suppress PR test summary comments'
     required: true
     
@@ -26,9 +31,12 @@ outputs:
 runs:
   using: "composite"
   steps:
+  - name: Set publish test results comment_mode flag to the default value
+    run:  echo "TEST_SUMMARY_COMMENT_MODE=${{ inputs.default_comment_mode}}" >> $GITHUB_OUTPUT
+    
   - name: Check if user is a member of the team
     uses: tspascoal/get-user-teams-membership@v2
-    id: checkUserMember
+    id: check_if_user_suppressed_comments
     with:
       username: ${{ github.actor }}
       organization: ${{ inputs.github_organisation }}
@@ -36,6 +44,5 @@ runs:
       GITHUB_TOKEN: ${{ inputs.github_token }}
       
   - name: Set publish test results comment_mode flag to suppress comments on PR if there are failures
-    id: set-comment-mode
-    if: ${{ steps.checkUserMember.outputs.isTeamMember == 'true' }}
+    if: ${{ steps.check_if_user_suppressed_comments.outputs.isTeamMember == 'true' }}
     run:  echo "TEST_SUMMARY_COMMENT_MODE='off'" >> $GITHUB_OUTPUT
