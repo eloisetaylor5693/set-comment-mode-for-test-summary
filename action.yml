@@ -35,6 +35,7 @@ runs:
   using: "composite"
   steps:
   - name: Set publish test results comment_mode flag to the default value
+    shell: bash
     run:  echo "TEST_SUMMARY_COMMENT_MODE=${{ inputs.default_comment_mode}}" >> $GITHUB_ENV
     
   - name: Check if user is a member of the team
@@ -47,5 +48,6 @@ runs:
       GITHUB_TOKEN: ${{ inputs.github_token }}
       
   - name: Set publish test results comment_mode flag to suppress comments on PR if there are failures
+    shell: bash
     if: ${{ steps.check_if_user_suppressed_comments.outputs.isTeamMember == 'true' }}
     run:  echo "TEST_SUMMARY_COMMENT_MODE='off'" >> $GITHUB_ENV
