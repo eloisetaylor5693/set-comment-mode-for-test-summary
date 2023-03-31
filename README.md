@@ -15,14 +15,27 @@ Therefore rather than having to turn off for everyone and some miss out on the v
 1. Set up a new Github Team for users to join who want to switch off the comments for their PR
 2. Add this action
   ```yaml
-  tbc
+    - name: Turn off PR comments for users in 'Suppress PR test summary comments'
+      uses: eloisetaylor5693/turn-off-pr-comments-for-test-summary-gitbub-action@v1
+      id: suppress-pr-comments-for-some-users
+      with:
+        default_comment_mode: 'failures'
+        github_organisation: 'my-org'
+        github_team_for_switching_off_comments: 'Suppress PR test summary comments'
+        github_token: ${{ secrets.github_token }}
   ```
 3. Use the output from this action in the [EnricoMi/publish-unit-test-result-action](https://github.com/EnricoMi/publish-unit-test-result-action)
   ```yaml
-  tbc
+   - name: Publish test results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: *.xml
+        comment_mode: ${{ steps.suppress-pr-comments-for-some-users.outputs.test_summary_comment_mode }}
+        check_name: "Tests"
   ```
 
-## Options
+## Input Options
 
 |Option|Default Value|Description|
 |:-----|:-----:|:----------|
@@ -30,3 +43,7 @@ Therefore rather than having to turn off for everyone and some miss out on the v
 |`github_token`|`${{github.token}}`|An alternative GitHub token, other than the default provided by GitHub Actions runner.|
 |`github_team_for_switching_off_comments`|"Suppress PR test summary comments"|Github Team users can join to suppress comments on their PR.|
 |`github_organisation`|`${{ github.repository_owner }} `|Github Organisation the team is part of.|
+
+## Output
+
+`test_summary_comment_mode`: is either the default you gave for the input `default_comment_mode` or `off`
