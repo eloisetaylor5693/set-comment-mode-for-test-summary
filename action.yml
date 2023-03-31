@@ -1,6 +1,9 @@
 name: 'Turn off the test summary PR comments if a user is in a specified Github Team'
 author: 'Eloise Taylor'
 description: 'Set comment mode on a PR for the test summary action based on the teams a user is in'
+branding:
+  icon: 'git-pull-request'
+  color: 'purple'
 
 inputs:
   default_comment_mode:
