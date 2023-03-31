@@ -1,4 +1,6 @@
-# GitHub Action to set comment mode for test summary the github action
+# GitHub Action to turn off PR comments if user is in github team for the test summary github action
+
+Turn off PR comments if a user is in a specified github team.  
 
 
 ## What?
