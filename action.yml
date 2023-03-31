@@ -24,15 +24,15 @@ inputs:
     required: true
     
 outputs:
-  TEST_SUMMARY_COMMENT_MODE:
+  test_summary_comment_mode:
     description: "Comment mode"
-    value: ${{ steps.set-comment-mode.outputs.TEST_SUMMARY_COMMENT_MODE }}
+    value: ${{ env.TEST_SUMMARY_COMMENT_MODE }}
 
 runs:
   using: "composite"
   steps:
   - name: Set publish test results comment_mode flag to the default value
-    run:  echo "TEST_SUMMARY_COMMENT_MODE=${{ inputs.default_comment_mode}}" >> $GITHUB_OUTPUT
+    run:  echo "TEST_SUMMARY_COMMENT_MODE=${{ inputs.default_comment_mode}}" >> $GITHUB_ENV
     
   - name: Check if user is a member of the team
     uses: tspascoal/get-user-teams-membership@v2
@@ -45,4 +45,4 @@ runs:
       
   - name: Set publish test results comment_mode flag to suppress comments on PR if there are failures
     if: ${{ steps.check_if_user_suppressed_comments.outputs.isTeamMember == 'true' }}
-    run:  echo "TEST_SUMMARY_COMMENT_MODE='off'" >> $GITHUB_OUTPUT
+    run:  echo "TEST_SUMMARY_COMMENT_MODE='off'" >> $GITHUB_ENV
