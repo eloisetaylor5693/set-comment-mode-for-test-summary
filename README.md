@@ -16,7 +16,7 @@ Therefore rather than having to turn off for everyone and some miss out on the v
 2. Add this action
   ```yaml
     - name: Turn off PR comments for users in 'Suppress PR test summary comments'
-      uses: eloisetaylor5693/turn-off-pr-comments-for-test-summary-gitbub-action@v1
+      uses: eloisetaylor5693/turn-off-pr-comments-for-test-summary-github-action@v1
       id: suppress-pr-comments-for-some-users
       with:
         default_comment_mode: 'failures'
