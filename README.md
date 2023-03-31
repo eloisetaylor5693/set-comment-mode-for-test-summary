@@ -24,7 +24,7 @@ Therefore rather than having to turn off for everyone and some miss out on the v
         github_team_for_switching_off_comments: 'Suppress PR test summary comments'
         github_token: ${{ secrets.github_token }}
   ```
-3. Use the output from this action in the [EnricoMi/publish-unit-test-result-action](https://github.com/EnricoMi/publish-unit-test-result-action)
+3. Use the `test_summary_comment_mode` output when using [EnricoMi/publish-unit-test-result-action](https://github.com/EnricoMi/publish-unit-test-result-action)
   ```yaml
    - name: Publish test results
       uses: EnricoMi/publish-unit-test-result-action@v2
