@@ -1,6 +1,6 @@
-name: 'Suppress PR comments from Test Summary marketplace plugin'
+name: 'Turn off the test summary PR comments if a user is in a specified Github Team'
 author: 'Eloise Taylor'
-description: 'Set comment mode on a PR for the test summary based on the teams a user is in'
+description: 'Set comment mode on a PR for the test summary action based on the teams a user is in'
 
 inputs:
   default_comment_mode:
