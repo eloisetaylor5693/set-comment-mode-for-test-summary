@@ -47,3 +47,9 @@ Therefore rather than having to turn off for everyone and some miss out on the v
 ## Output
 
 `test_summary_comment_mode`: is either the default you gave for the input `default_comment_mode` or `off`
+
+
+
+## Contributing
+
+See <https://github.com/eloisetaylor5693/turn-off-pr-comments-for-test-summary-github-action/blob/main/CONTRIBUTING.md>
