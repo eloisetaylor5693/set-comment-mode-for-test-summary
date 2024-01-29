@@ -39,7 +39,7 @@ runs:
     run:  echo "TEST_SUMMARY_COMMENT_MODE=${{ inputs.default_comment_mode}}" >> $GITHUB_ENV
     
   - name: Check if user is a member of the team
-    uses: tspascoal/get-user-teams-membership@v2
+    uses: tspascoal/get-user-teams-membership@v3
     id: check_if_user_suppressed_comments
     with:
       username: ${{ github.actor }}
