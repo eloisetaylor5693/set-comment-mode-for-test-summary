@@ -1,8 +1,8 @@
 # Contributing
 
-As the owner of the repository, I generally commit directly to main if not likely to break anything. 
+As the owner of the repository, I generally commit directly to main if not likely to break anything.
 
-For others, please create a PR.  I will review and release
+For others, please create a PR.  I will review and release.
 
 ## Publishing changes
 
