@@ -1,7 +1,6 @@
-# GitHub Action to turn off PR comments if user is in github team for the test summary github action
+# GitHub Action to turn off PR comments if user is in GitHub team for the test summary GitHub action
 
-Turn off PR comments if a user is in a specified github team.  
-
+Turn off PR comments if a user is in a specified GitHub team.  
 
 ## What?
 This action extends the [GitHub Action](https://github.com/marketplace/actions/publish-test-results): [EnricoMi/publish-unit-test-result-action](https://github.com/EnricoMi/publish-unit-test-result-action) to allow you to suppress comments on PRs for users who join a GitHub Team.
@@ -42,7 +41,7 @@ Therefore rather than having to turn off for everyone and some miss out on the v
 |`default_comment_mode`|"failures"|The comment mode to use when a commit author isn't in any GitHub Teams for suppressing comments on the PR.|
 |`github_token`|`${{github.token}}`|An alternative GitHub token, other than the default provided by GitHub Actions runner.|
 |`github_team_for_switching_off_comments`|"Suppress PR test summary comments"|GitHub Team users can join to suppress comments on their PR.|
-|`github_organisation`|`${{ github.repository_owner }} `|GitHub Organisation the team is part of.|
+|`github_organisation`|`${{ github.repository_owner }}`|GitHub Organisation the team is part of.|
 
 ## Output
 
