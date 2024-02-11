@@ -6,7 +6,7 @@ Turn off PR comments if a user is in a specified GitHub team.
 This action extends the [GitHub Action](https://github.com/marketplace/actions/publish-test-results): [EnricoMi/publish-unit-test-result-action](https://github.com/EnricoMi/publish-unit-test-result-action) to allow you to suppress comments on PRs for users who join a GitHub Team.
 
 ## Why?
-It seems that the behaviour to comment PRs when tests fail was quite contriversial in my department!  Some devs found it really useful, others found it really annoying.
+It seems that the behaviour to comment PRs when tests fail was quite controversial in my department!  Some devs found it really useful, others found it really annoying.
 
 Therefore rather than having to turn off for everyone and some miss out on the value, or turned on for everyone and annoy people this action solves that.
 
