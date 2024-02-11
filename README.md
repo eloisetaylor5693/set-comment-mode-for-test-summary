@@ -19,7 +19,7 @@ Therefore rather than having to turn off for everyone and some miss out on the v
 
   ```yaml
     - name: Turn off PR comments for users in 'Suppress PR test summary comments'
-      uses: eloisetaylor5693/turn-off-pr-comments-for-test-summary-github-action@v2.0.1
+      uses: eloisetaylor5693/turn-off-pr-comments-for-test-summary-github-action@v2.0.3
       id: suppress-pr-comments-for-some-users
       with:
         default_comment_mode: 'failures'
@@ -32,7 +32,7 @@ Therefore rather than having to turn off for everyone and some miss out on the v
 
   ```yaml
    - name: Publish test results
-      uses: EnricoMi/publish-unit-test-result-action@v2
+      uses: EnricoMi/publish-unit-test-result-action@v2.14.0
       if: always()
       with:
         files: *.xml
