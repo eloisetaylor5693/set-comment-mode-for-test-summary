@@ -49,6 +49,8 @@ Therefore rather than having to turn off for everyone and some miss out on the v
 |`github_team_for_switching_off_comments`|"Suppress PR test summary comments"|GitHub Team users can join to suppress comments on their PR.|
 |`github_organisation`|`${{ github.repository_owner }}`|GitHub Organisation the team is part of.|
 
+See available `comment_mode` values in the [config](https://github.com/EnricoMi/publish-unit-test-result-action?tab=readme-ov-file#configuration) from [EnricoMi/publish-unit-test-result-action](https://github.com/EnricoMi/publish-unit-test-result-action).
+
 ## Output
 
 `test_summary_comment_mode`: is either the default you gave for the input `default_comment_mode` or `off`
